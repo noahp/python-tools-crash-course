@@ -17,7 +17,6 @@ class: left, middle
 9. [pytest / tox](#pytest)
 10. [profiling](#prof)
 11. [cli scripts](#cli)
-12. [cffi](#cffi)
 
 ---
 name: background
@@ -327,5 +326,3 @@ name: cli
 
 ---
 name: cffi
-
-# 12. 👽 cffi
