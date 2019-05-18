@@ -1,24 +1,27 @@
 class: left, middle
 
+🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍
 # Python Meta Crash Course
+🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍
 
 ### *Python tooling*
 
-1. background + vocab
-2. pip
-3. virtualenv / venv
-4. pylint
-5. formatting
-6. python 3
-7. setuptools + packaging
-8. hashbang
-9. pytest / tox
-10. profiling
-11. cli scripts
+1. [background + vocab](#background)
+2. [pip](#pip)
+3. [virtualenv / venv](#venv)
+4. [pylint](#pylint)
+5. [formatting](#fmt)
+6. [python 3](#py3)
+7. [setuptools + packaging](#pkg)
+8. [hashbang](#hashbang)
+9. [pytest / tox](#pytest)
+10. [profiling](#prof)
+11. [cli scripts](#cli)
 
 ---
+name: background
 
-# 1. 🐍 Background + Vocab
+# 1. 🌱 Background + Vocab
 
 ## Python module
 A python file: `foo.py`.
@@ -60,6 +63,7 @@ import foo as foobish  # import module under alias
 ```
 
 ---
+name: pip
 
 # 2. 🚚 Pip
 
@@ -109,29 +113,36 @@ $ pip uninstall some-package-name
 
 `~/.pip/pip.conf` - contains global pip settings, for example specifying an
 extra index url for packages.
+
 https://pip.pypa.io/en/stable/user_guide/#config-file
 
 ---
+name: venv
 
 # 3. 👩‍🚀 Virtualenv / Venv
 
 ---
+name: pylint
 
 # 4. ✨ Pylint
 
 ---
+name:fmt
 
 # 5. 🚿 Formatting
 
 ---
+name: py3
 
 # 6. Python 3
 
 ---
+name: pkg
 
 # 7. 📦 Setuptools + Packaging
 
 ---
+name: hashbang
 
 # 8. #️⃣ Hashbang
 
@@ -152,10 +163,12 @@ $ chmod +x foo.py
 🌟🤗🌟
 
 ---
+name: pytest
 
 # 9. ✔️ Pytest / Tox
 
 ---
+name: prof
 
 # 10. ⏱ Profiling
 
@@ -171,5 +184,6 @@ $ profy foo.py
 ```
 
 ---
+name: cli
 
 # 11. Cli Scripts
