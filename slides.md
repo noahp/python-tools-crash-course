@@ -2,9 +2,6 @@ class: left, middle
 
 🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍
 # Python Meta Crash Course
-🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍
-
-### *Python tooling*
 
 1. [background + vocab](#background)
 2. [pip](#pip)
@@ -16,7 +13,8 @@ class: left, middle
 8. [hashbang](#hashbang)
 9. [pytest / tox](#pytest)
 10. [profiling](#prof)
-11. [cli scripts](#cli)
+
+🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍
 
 ---
 name: background
@@ -180,14 +178,76 @@ $ conda install, uninstall, list
 ```
 
 ---
+### etc.
+
+As usual in Python, buffet style options:
+
+- Pyenv https://github.com/pyenv/pyenv
+- Poetry https://github.com/sdispater/poetry
+- pipenv https://github.com/pypa/pipenv
+- virtualenvwrapper https://virtualenvwrapper.readthedocs.io/en/latest/
+- pyenv-virtualenvwrapper https://github.com/pyenv/pyenv-virtualenv
+
+And probably many others.
+
+#### direnv
+
+Direnv can be used to automatically select a particular virtual environment
+when entering a directory. Useful if you have a set of projects that use a
+particular python / set of packages.
+https://github.com/direnv/direnv/wiki/Python
+
+---
 name: pylint
 
 # 4. ✨ Pylint
 
+Pep 8 outlines the general style rules:<br/>
+https://www.python.org/dev/peps/pep-0008/
+
+Pylint checks for those... but also checks for errors (crashes that would occur
+at runtime) and emits warnings for conditions that might cause unexpected
+behavior (misuse).
+
+100% pylint compliance will make your python better!
+
+Many other options for linting of course:
+- mccabe (complexity) https://github.com/PyCQA/mccabe
+- bandit (security) https://github.com/PyCQA/bandit
+- safety (vulnerable modules) https://github.com/pyupio/safety
+- vulture (dead code) https://github.com/jendrikseipp/vulture
+- [many more](https://github.com/vintasoftware/python-linters-and-code-analysis)
+of _especial_ interest are the meta-linters pylama, prospector, coala
+
+Flake8 is very popular, and useful to run. Pylint typically catches everything
+flake8 does though.
 ---
 name:fmt
 
 # 5. 🚿 Formatting
+
+Use `black`:<br/>
+https://github.com/python/black
+
+`black` doesn't have configuration options; only one style is supported.
+pep8 compliant, so linters that check for that are happy.
+
+I'm not going to talk about other tools 🙂
+
+```bash
+pip3 install black
+black <some python files>
+
+# or for ci, returns non-zero for non-compliance
+black --check <some python files>
+```
+
+`black` requires python3 to execute, but you can run it on python2 files:
+```bash
+python3 -m black <some python files>
+```
+
+*Note: sadly (?) `black` only operates on entire files
 
 ---
 name: py3
@@ -203,7 +263,7 @@ print()  # I'm a function!
 
 ### Strings are unicode
 
-Slicing strings operates at the glyph level. It is O(n) (see 
+Slicing strings operates at the glyph level. It is O(n) (see
 [pypy optimization though]).
 Encode to bytes/ascii for old-style slicing behavior.
 
@@ -233,7 +293,7 @@ Byte types are now used in some io operations (eg file, requests)
 
 ---
 
-### New hotness
+### New stuff
 
 #### f-strings
 
@@ -244,6 +304,7 @@ print(f"doing maths {1 + math.sqrt(2)}")
 # rip .format() .
 ```
 
+---
 #### asyncio!!!
 
 https://docs.python.org/3/library/asyncio-task.html
@@ -261,21 +322,43 @@ hello
 world
 ```
 
----
+#### asyncio is _hard_ in python 😔
 
+Mostly due to the way the syntax operates. These are popular workarounds:
+
+- https://github.com/python-trio/trio (well known and used)
+- https://github.com/dabeaz/curio (more experimental)
+
+
+---
 #### Futurize
 
-Don't use six.
+Don't use `six`. It's pretty limited in the compatibility problems it can deal
+with.
+
+Use `future`!
 
 ```bash
 $ pip install future
 $ futurize -0 -w janky-module.py
 ```
 
+Usually, you'll have to test the code some to iron out the remaining issues.
+Also of note, `pylint` in py3k compatibility mode:
+```bash
+pylint --py3k <python file>
+
+# or python3 pylint
+python3 -m pylint <python file>
+```
+
 ---
 name: pkg
 
 # 7. 📦 Setuptools + Packaging
+
+--
+# 🛠 Cli Scripts (entry points)
 
 ---
 name: hashbang
@@ -318,11 +401,3 @@ $ python -m cProfile -s cumtime foo.py <args>
 $ pip install profy
 $ profy foo.py
 ```
-
----
-name: cli
-
-# 11. 🛠 Cli Scripts
-
----
-name: cffi
