@@ -116,6 +116,22 @@ extra index url for packages.
 https://pip.pypa.io/en/stable/user_guide/#config-file
 
 ---
+
+## Pip for local packages
+
+```bash
+# cwd is an installable python package
+$ pip install .
+
+# for development, you can install in "editable" mode
+$ pip install -e .
+
+# this places a <package-name>.egg.link into site-packages with
+# a path to the package location on disk. freely edit the package
+# source to test and avoid installing repeatedly!
+```
+
+---
 name: venv
 
 # 3. 👩‍🚀 Virtualenv / Venv
@@ -125,13 +141,12 @@ name: venv
 class: full-height
 background-image: url(https://i.redd.it/dfulrui6r2521.jpg)
 
-#
 
 ---
 ### Virtualenv
 
-Virtualenv is just a folder containing a python interpreter (often a symlink)
-and sandbox for site_packages (pip) and /bin console-scripts. It's an isolated
+Virtualenv is just a folder containing a copy of the python interpreter and
+sandbox for site_packages (pip) and /bin console-scripts. It's an isolated
 python install and package store that protects your system python.
 
 Works for any version of python.
@@ -297,6 +312,22 @@ Byte types are now used in some io operations (eg file, requests)
 
 ### New stuff
 
+#### Assignment Expressions
+
+Walrus operator `:=`
+https://www.python.org/dev/peps/pep-0572/
+
+```python
+# old idiom
+match = re.search(r"(\d+\.\d+\.\d+)", "1.2.3")
+if match:
+    print(match)
+
+# assignment expression version
+if match := re.search(r"(\d+\.\d+\.\d+)", "1.2.3"):
+    print(match)
+```
+
 #### f-strings
 
 ```python
@@ -385,7 +416,7 @@ Anatomy:
 ```
 
 Using declarative form (`setup.cfg`), `setup.py` is only:
-```py
+```python
 import setuptools
 setuptools.setup()
 ```
