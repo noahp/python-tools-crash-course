@@ -1,7 +1,7 @@
 class: left, middle
 
 🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍
-# Python Meta Crash Course
+# Python Tools Crash Course
 
 1. [background + vocab](#background)
 2. [pip](#pip)
@@ -355,10 +355,116 @@ python3 -m pylint <python file>
 ---
 name: pkg
 
-# 7. 📦 Setuptools + Packaging
+# 7. 📦 Packaging
 
---
-# 🛠 Cli Scripts (entry points)
+Standard package format is `.whl`, which is a Zip archive containing a pre-built
+package.
+
+Historically `sdist` (source dist) releases were used, but required valid
+compiler for native extensions, and required running the setup script on
+destination.
+
+More info at https://pythonwheels.com/ .
+
+---
+## Option 1: setuptools
+
+Anatomy:
+
+```bash
+# typical package
+.
+├── foo
+│   ├── foo.py
+│   └── __init__.py
+├── README.md
+├── setup.cfg
+└── setup.py
+```
+
+Using declarative form (`setup.cfg`), `setup.py` is only:
+```py
+import setuptools
+setuptools.setup()
+```
+
+---
+### `setup.cfg`
+
+```ini
+[metadata]
+name = foobar
+author = Dave Null
+author-email = foobar@example.org
+license = MIT
+long_description = file: README.md
+long-description-content-type = text/markdown
+url = http://pypi.python.org/pypi/foobar
+requires-python = >=2.6
+# Add here all kinds of additional classifiers as defined under
+# https://pypi.python.org/pypi?%3Aaction=list_classifiers
+classifiers =
+    Development Status :: 4 - Beta
+    Environment :: Console
+    License :: OSI Approved :: Apache Software License
+    Operating System :: OS Independent
+```
+
+---
+### `setup.cfg` continued
+
+```ini
+[options.entry_points]
+# Pip will install a script available on PATH for the current python environment
+console_scripts =
+    foobar = foobar:main
+
+[bdist_wheel]
+universal = 1
+```
+
+Populating classifiers enables badges from pypi.org, eg
+
+![PyPI](https://img.shields.io/pypi/v/poetry.svg)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/poetry.svg)
+![PyPI - License](https://img.shields.io/pypi/l/poetry.svg)
+
+```bash
+# building
+$ python setup.py bdist_wheel
+
+# installing
+$ pip install .
+# or
+$ pip install <path to .whl>
+```
+
+---
+## Option 2: _poetry_
+
+Packaging tool:
+https://github.com/sdispater/poetry
+
+Uses the new toml format for package configuration:
+https://www.python.org/dev/peps/pep-0518/
+
+```bash
+$ pip install poetry
+
+$ poetry new foobar
+
+$ tree foobar
+.
+├── foobar
+│   └── __init__.py
+├── pyproject.toml
+├── README.rst  # rename to .md if you like! (I do)
+└── tests
+    ├── __init__.py
+    └── test_foobar.py
+```
+
+Supports lock files for dependencies.
 
 ---
 name: hashbang
@@ -385,6 +491,70 @@ $ chmod +x foo.py
 name: pytest
 
 # 9. ✔️ Pytest / Tox
+
+Pytest at its simplest:
+```python
+def foo():
+    return 4
+
+def test_foo():
+    assert foo() is 4, "Whoops foo() fails"
+```
+```bash
+# run it
+pytest foo.py -vvv  # extra info when running
+```
+
+Coverage:
+```bash
+pip install pytest-cov
+
+pytest foo.py -vvv --cov=foo --cov-type=html
+
+firefox htmlcov/index.html
+```
+
+---
+## tox
+
+Tox manages virtualenvs and runs commands, and can run against multiple python versions.
+
+```ini
+[tox]
+envlist = py27, py36, black
+
+[testenv]
+deps=pylint
+whitelist_externals=/bin/bash
+commands=
+    bash -c "pylint ./**/*.py"
+    pytest
+
+[testenv:black]
+deps=
+    black==18.9b0
+basepython=python3
+commands=
+    black --check --verbose .
+```
+---
+## tox continued
+
+```bash
+# run it!
+$ tox -p auto
+GLOB sdist-make: /home/dev/example/setup.py
+✔ OK py27 in 3.465 seconds
+✔ OK py36 in 7.601 seconds
+✔ OK black in 8.622 seconds
+____________________ summary ____________________
+  py27: commands succeeded
+  py36: commands succeeded
+  black: commands succeeded
+  congratulations :)
+```
+
+Info at https://tox.readthedocs.io/ !
 
 ---
 name: prof
