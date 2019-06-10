@@ -1,6 +1,6 @@
-# Python Meta Crash Course
+# Python Tools Crash Course
 
-*See this rendered at https://noahpendleton.com/python-meta-crash-course*
+*See this rendered at https://noahpendleton.com/python-tools-crash-course*
 
 Uses remark https://github.com/gnab/remark .
 For local work, you'll need an httpserver:
