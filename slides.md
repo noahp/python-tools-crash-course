@@ -309,26 +309,7 @@ Byte types are now used in some io operations (eg file, requests)
 ```
 
 ---
-
 ### New stuff
-
-#### Assignment Expressions
-
-Only in python3.8+!
-
-Walrus operator `:=`
-https://www.python.org/dev/peps/pep-0572/
-
-```python
-# old idiom
-match = re.search(r"(\d+\.\d+\.\d+)", "1.2.3")
-if match:
-    print(match)
-
-# assignment expression version
-if match := re.search(r"(\d+\.\d+\.\d+)", "1.2.3"):
-    print(match)
-```
 
 #### f-strings
 
@@ -358,6 +339,25 @@ flags = 0b_0011_1111_0100_1110
 
 # same, for string conversions
 flags = int('0b_1111_0000', 2)
+```
+
+---
+#### Assignment Expressions
+
+Only in python3.8+!
+
+Walrus operator `:=`
+https://www.python.org/dev/peps/pep-0572/
+
+```python
+# old idiom
+match = re.search(r"(\d+\.\d+\.\d+)", "1.2.3")
+if match:
+    print(match)
+
+# assignment expression version
+if match := re.search(r"(\d+\.\d+\.\d+)", "1.2.3"):
+    print(match)
 ```
 
 ---
@@ -425,6 +425,8 @@ More info at https://pythonwheels.com/ .
 ---
 ## Option 1: setuptools
 
+https://packaging.python.org/guides/distributing-packages-using-setuptools/
+
 Anatomy:
 
 ```bash
@@ -462,8 +464,9 @@ requires-python = >=2.6
 classifiers =
     Development Status :: 4 - Beta
     Environment :: Console
-    License :: OSI Approved :: Apache Software License
+    License :: OSI Approved :: MIT License
     Operating System :: OS Independent
+    Programming Language :: Python :: 2.7
 ```
 
 ---
