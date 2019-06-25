@@ -3,23 +3,23 @@ class: left, middle
 🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍
 # Python Tools Crash Course
 
-1. [background + vocab](#background)
-2. [pip](#pip)
-3. [virtualenv / venv](#venv)
-4. [pylint](#pylint)
-5. [formatting](#fmt)
-6. [python 3](#py3)
-7. [setuptools + packaging](#pkg)
-8. [hashbang](#hashbang)
-9. [pytest / tox](#pytest)
-10. [profiling](#prof)
+1. [background + vocab](#1--background--vocab)
+2. [pip](#2--pip)
+3. [virtualenv / venv](#3--virtualenv--venv)
+4. [pylint](#4--pylint)
+5. [formatting](#5--formatting)
+6. [python 3](#6--python3)
+7. [setuptools + packaging](#7--packaging)
+8. [hashbang](#8--hashbang)
+9. [pytest / tox](#9--pytest--tox)
+10. [profiling](#10--profiling)
 
 🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍
 
 <a class="github-fork-ribbon" href="https://github.com/noahp/python-tools-crash-course" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
 
 ---
-name: background
+name: 1--background--vocab
 
 # 1. 🌱 Background + Vocab
 
@@ -63,7 +63,7 @@ import foo as foobish  # import module under alias
 ```
 
 ---
-name: pip
+name: 2--pip
 
 # 2. 🚚 Pip
 
@@ -132,7 +132,7 @@ $ pip install -e .
 ```
 
 ---
-name: venv
+name: 3--virtualenv--venv
 
 # 3. 👩‍🚀 Virtualenv / Venv
 .center[![oof.jpg](https://imgs.xkcd.com/comics/python_environment.png)]
@@ -215,7 +215,7 @@ particular python / set of packages.
 https://github.com/direnv/direnv/wiki/Python
 
 ---
-name: pylint
+name: 4--pylint
 
 # 4. ✨ Pylint
 
@@ -239,7 +239,7 @@ of _especial_ interest are the meta-linters pylama, prospector, coala
 Flake8 is very popular, and useful to run. Pylint typically catches everything
 flake8 does though.
 ---
-name:fmt
+name: 5--formatting
 
 # 5. 🚿 Formatting
 
@@ -267,7 +267,7 @@ python3 -m black <some python files>
 *Note: sadly (?) `black` only operates on entire files
 
 ---
-name: py3
+name: 6--python3
 
 # 6. <img src="https://images-na.ssl-images-amazon.com/images/I/61SA0Wq1P1L._SY355_.png" alt="py3" height="42"> Python3
 
@@ -409,7 +409,7 @@ python3 -m pylint <python file>
 ```
 
 ---
-name: pkg
+name: 7--packaging
 
 # 7. 📦 Packaging
 
@@ -526,9 +526,9 @@ $ tree foobar
 Supports lock files for dependencies.
 
 ---
-name: hashbang
+name: 8--hashbang
 
-# 8. #️⃣ Hashbang
+# 8. # Hashbang
 
 Yes:
 ```python
@@ -547,7 +547,7 @@ $ chmod +x foo.py
 🌟🤗🌟
 
 ---
-name: pytest
+name: 9--pytest--tox
 
 # 9. ✔️ Pytest / Tox
 
@@ -616,7 +616,7 @@ ____________________ summary ____________________
 Info at https://tox.readthedocs.io/ !
 
 ---
-name: prof
+name: 10--profiling
 
 # 10. ⏱ Profiling
 
